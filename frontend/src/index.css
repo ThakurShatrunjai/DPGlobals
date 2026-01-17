@@ -1,0 +1,376 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 0.625rem;
+        --background: 0.99 0 0;
+        --foreground: 0.15 0 0;
+        --card: 1 0 0;
+        --card-foreground: 0.15 0 0;
+        --popover: 1 0 0;
+        --popover-foreground: 0.15 0 0;
+        --primary: 0.45 0.18 250;
+        --primary-foreground: 0.99 0 0;
+        --secondary: 0.96 0.01 250;
+        --secondary-foreground: 0.15 0 0;
+        --muted: 0.96 0 0;
+        --muted-foreground: 0.50 0 0;
+        --accent: 0.94 0.02 250;
+        --accent-foreground: 0.15 0 0;
+        --destructive: 0.55 0.22 25;
+        --destructive-foreground: 0.99 0 0;
+        --border: 0.90 0 0;
+        --input: 0.90 0 0;
+        --ring: 0.45 0.18 250;
+        --chart-1: 0.60 0.20 250;
+        --chart-2: 0.55 0.18 200;
+        --chart-3: 0.50 0.15 280;
+        --chart-4: 0.65 0.22 220;
+        --chart-5: 0.70 0.25 240;
+        --sidebar: 0.99 0 0;
+        --sidebar-foreground: 0.15 0 0;
+        --sidebar-primary: 0.45 0.18 250;
+        --sidebar-primary-foreground: 0.99 0 0;
+        --sidebar-accent: 0.96 0.01 250;
+        --sidebar-accent-foreground: 0.15 0 0;
+        --sidebar-border: 0.90 0 0;
+        --sidebar-ring: 0.45 0.18 250;
+    }
+
+    .dark {
+        --background: 0.12 0 0;
+        --foreground: 0.98 0 0;
+        --card: 0.15 0 0;
+        --card-foreground: 0.98 0 0;
+        --popover: 0.18 0 0;
+        --popover-foreground: 0.98 0 0;
+        --primary: 0.60 0.20 250;
+        --primary-foreground: 0.98 0 0;
+        --secondary: 0.20 0.01 250;
+        --secondary-foreground: 0.98 0 0;
+        --muted: 0.22 0 0;
+        --muted-foreground: 0.65 0 0;
+        --accent: 0.25 0.02 250;
+        --accent-foreground: 0.98 0 0;
+        --destructive: 0.60 0.22 25;
+        --destructive-foreground: 0.98 0 0;
+        --border: 0.30 0 0;
+        --input: 0.30 0 0;
+        --ring: 0.60 0.20 250;
+        --chart-1: 0.60 0.20 250;
+        --chart-2: 0.55 0.18 200;
+        --chart-3: 0.50 0.15 280;
+        --chart-4: 0.65 0.22 220;
+        --chart-5: 0.70 0.25 240;
+        --sidebar: 0.15 0 0;
+        --sidebar-foreground: 0.98 0 0;
+        --sidebar-primary: 0.60 0.20 250;
+        --sidebar-primary-foreground: 0.98 0 0;
+        --sidebar-accent: 0.20 0.01 250;
+        --sidebar-accent-foreground: 0.98 0 0;
+        --sidebar-border: 0.30 0 0;
+        --sidebar-ring: 0.60 0.20 250;
+    }
+
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+/* Enhanced smooth scroll behavior with optimized easing */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 96px; /* Match header height for anchor links */
+}
+
+/* Smooth scroll snap for sections */
+@supports (scroll-snap-type: y mandatory) {
+    .scroll-snap-container {
+        scroll-snap-type: y proximity;
+        scroll-padding-top: 96px;
+    }
+    
+    .scroll-snap-section {
+        scroll-snap-align: start;
+        scroll-snap-stop: normal;
+    }
+}
+
+/* GPU-accelerated animations with hardware compositing */
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 30px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateZ(0);
+    }
+    to {
+        opacity: 1;
+        transform: translateZ(0);
+    }
+}
+
+@keyframes pulse-slow {
+    0%, 100% {
+        opacity: 0.3;
+        transform: translateZ(0);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateZ(0);
+    }
+}
+
+@keyframes gradient-text {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes slide-in-left {
+    from {
+        opacity: 0;
+        transform: translate3d(-30px, 0, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes slide-in-right {
+    from {
+        opacity: 0;
+        transform: translate3d(30px, 0, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+/* Animation utilities with GPU acceleration and optimized easing */
+.animate-fade-in-up {
+    animation: fade-in-up 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    opacity: 0;
+    will-change: transform, opacity;
+    transform: translateZ(0);
+}
+
+.animate-fade-in {
+    animation: fade-in 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    opacity: 0;
+    will-change: opacity;
+    transform: translateZ(0);
+}
+
+.animate-pulse-slow {
+    animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    transform: translateZ(0);
+}
+
+.animate-gradient-text {
+    background: linear-gradient(90deg, 
+        oklch(var(--primary)), 
+        oklch(var(--accent)), 
+        oklch(var(--primary))
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-text 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-slide-in-left {
+    animation: slide-in-left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    opacity: 0;
+    will-change: transform, opacity;
+    transform: translateZ(0);
+}
+
+.animate-slide-in-right {
+    animation: slide-in-right 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    opacity: 0;
+    will-change: transform, opacity;
+    transform: translateZ(0);
+}
+
+/* Animation delays */
+.animation-delay-100 {
+    animation-delay: 100ms;
+}
+
+.animation-delay-200 {
+    animation-delay: 200ms;
+}
+
+.animation-delay-300 {
+    animation-delay: 300ms;
+}
+
+.animation-delay-400 {
+    animation-delay: 400ms;
+}
+
+.animation-delay-500 {
+    animation-delay: 500ms;
+}
+
+.animation-delay-600 {
+    animation-delay: 600ms;
+}
+
+.animation-delay-700 {
+    animation-delay: 700ms;
+}
+
+.animation-delay-800 {
+    animation-delay: 800ms;
+}
+
+/* Navigation link hover effects with GPU acceleration */
+.nav-link {
+    position: relative;
+    padding-bottom: 2px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transform: translateZ(0);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: #2563eb;
+    transform: translate3d(-50%, 0, 0);
+    transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: width;
+}
+
+.dark .nav-link::after {
+    background: #60a5fa;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Performance optimizations for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    html {
+        scroll-behavior: auto;
+    }
+    
+    .nav-link:hover {
+        transform: none !important;
+    }
+    
+    .will-change-transform {
+        will-change: auto !important;
+    }
+}
+
+/* Smooth transitions for all interactive elements with GPU acceleration */
+@layer utilities {
+    .transition-smooth {
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        will-change: transform, opacity;
+        transform: translateZ(0);
+    }
+    
+    .transition-smooth-slow {
+        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        will-change: transform, opacity;
+        transform: translateZ(0);
+    }
+    
+    .transition-smooth-fast {
+        transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        will-change: transform, opacity;
+        transform: translateZ(0);
+    }
+    
+    /* GPU-accelerated transforms */
+    .gpu-accelerated {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        perspective: 1000px;
+    }
+}
+
+/* Optimize image rendering and lazy loading */
+img {
+    content-visibility: auto;
+    transform: translateZ(0);
+}
+
+img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+img[loading="lazy"].loaded {
+    opacity: 1;
+}
+
+/* Smooth hover effects with hardware compositing */
+.hover-lift {
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.hover-lift:hover {
+    transform: translate3d(0, -8px, 0);
+}
+
+/* Optimized parallax scrolling */
+.parallax-element {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Smooth focus states */
+*:focus-visible {
+    outline: 2px solid oklch(var(--ring));
+    outline-offset: 2px;
+    transition: outline-offset 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Optimize scroll performance */
+.scroll-optimized {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+}
+
